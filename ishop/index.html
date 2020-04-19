@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Интернет-магазин</title>
+</head>
+<body>
+<div id="container"></div>
+
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+<script src="ishop.js"></script>
+<link rel="stylesheet" type="text/css" href="ishop.css"/>
+
+<script>
+
+    const headersTable = {name: 'товар', price: 'цена', photo: 'изображение', count: 'количество'};
+    const goodsArr = [
+        {name: 'телефон', code: 1, price: '500 рублей', photo: 'images/phone.jpg', count: 13},
+        {name: 'микроволновая печь', code: 2, price: '200 рублей', photo: 'images/microwave.jpg', count: 34},
+        {name: 'торшер', code: 3, price: '150 рублей', photo: 'images/floor-lamp.jpg', count: 5},
+        {name: 'чайник', code: 4, price: '250 рублей', photo: 'images/teapot.jpg', count: 21},
+    ];
+
+    ReactDOM.render(
+        React.createElement(GoodsTable, {headersTable: headersTable, goods: goodsArr}),
+        document.getElementById('container')
+    );
+
+</script>
+
+</body>
+</html>

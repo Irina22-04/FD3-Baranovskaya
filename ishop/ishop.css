@@ -1,0 +1,60 @@
+.GoodsTable {
+    width: 70vw;
+    border: 2px solid black;
+}
+.Header {
+    font-weight: bold;
+}
+
+.ProductHeader,
+.Product {
+    display: flex;
+    width: 100%;
+}
+
+.Product {
+    border-bottom: 1px solid black;
+}
+
+.Product:last-child {
+    border-bottom: none;
+}
+
+.ProductHeader {
+    border-bottom: 2px solid black;
+}
+
+.Price,
+.Count {
+    width: 20%;
+    text-align: center;
+}
+.ProductName,
+.ProductImage {
+    width: 30%;
+}
+
+.Header {
+    text-align: center;
+}
+
+.Price,
+.Count,
+.ProductName,
+.ProductImage {
+    padding-left: 1%;
+    border-left: 1px solid black;
+    font-size: 18px;
+}
+
+
+
+.ProductImage {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.Product {
+    min-height: 20vh;
+}
