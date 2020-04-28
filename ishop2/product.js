@@ -1,9 +1,13 @@
 const Product = React.createClass({
     displayName: 'product',
 
-    makeChosen: function (EO) {
-        const isSelected = Number(EO.currentTarget.id);
-        this.props.cbMakeChosen(isSelected);
+    makeChosen: function () {
+        this.props.cbMakeChosen(this.props.code);
+    },
+
+    deleteClick: function () {
+        const answer = confirm(`Вы хотите удалить товар '${this.props.productName}'?` );
+        return answer ? this.props.cbDeleteProduct(this.props.code) : null;
     },
 
     render: function () {
@@ -18,7 +22,7 @@ const Product = React.createClass({
             React.DOM.div({className: 'productImage', style: {backgroundImage: `url(${this.props.photo})`}}),
             React.DOM.div({className: 'count'}, this.props.count),
             React.DOM.div({className: 'control'},
-                React.DOM.input({type: 'button', value: 'Delete', onClick: this.props.cbDeleteClick})
+                React.DOM.input({type: 'button', value: 'Delete', onClick: this.deleteClick})
             ))
     }
 });

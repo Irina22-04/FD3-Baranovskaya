@@ -15,17 +15,12 @@ const Shop = React.createClass({
         })
     },
 
-    deleteClick: function(numb) {
-        const answer = confirm('Вы хотите удалить товар?');
-        return answer ? this.deleteProduct(numb) : null;
-    },
-
-    deleteProduct: function(numb) {
-      this.setState({
-          goods: this.state.goods.filter(product => {
-              return product.code !== numb;
-          })
-      })
+    deleteProduct: function (numb) {
+        this.setState({
+            goods: this.state.goods.filter(product => {
+                return product.code !== numb;
+            })
+        })
     },
 
     render: function () {
@@ -40,7 +35,7 @@ const Shop = React.createClass({
                 count: product.count,
                 cbMakeChosen: this.makeChosen,
                 isSelected: product.code === this.state.isSelected,
-                cbDeleteClick: () => this.deleteClick(product.code),
+                cbDeleteProduct: this.deleteProduct,
             })
         });
 
