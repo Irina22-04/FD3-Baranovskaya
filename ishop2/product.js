@@ -1,13 +1,23 @@
 const Product = React.createClass({
     displayName: 'product',
 
+    propTypes: {
+        code: React.PropTypes.number.isRequired,
+        productName: React.PropTypes.string.isRequired,
+        price: React.PropTypes.string.isRequired,
+        photo: React.PropTypes.string.isRequired,
+        count: React.PropTypes.number.isRequired,
+        cbMakeChosen: React.PropTypes.func,
+        isSelected: React.PropTypes.bool,
+        cbDeleteProduct: React.PropTypes.func,
+    },
+
     makeChosen: function () {
         this.props.cbMakeChosen(this.props.code);
     },
 
     deleteClick: function () {
-        const answer = confirm(`Вы хотите удалить товар '${this.props.productName}'?` );
-        return answer ? this.props.cbDeleteProduct(this.props.code) : null;
+        this.props.cbDeleteProduct(this.props.code, this.props.productName);
     },
 
     render: function () {
