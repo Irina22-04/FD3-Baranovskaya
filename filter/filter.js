@@ -14,44 +14,33 @@ const Filter = React.createClass({
         };
     },
 
-    sortWords: function () {
-        const newIsSorted = !this.state.isSorted;
-        let newWords
-        switch (newIsSorted) {
-            case true:
-                newWords = this.state.words.sort();
-                break;
-            default:
-                newWords = [];
-                this.props.words.forEach(word => {
-                    if (word.includes(this.state.findStr)) {
-                        newWords.push(word);
-                    }
-                });
-
-        }
-
-        this.setState({
-            isSorted: newIsSorted,
-            words: newWords,
-        });
-    },
-
-    filterWords: function (EO) {
-        let str = EO.target.value;
+    createNewWords: function () {
         let newFilteredWords = [];
         this.props.words.forEach(word => {
-            if (word.includes(str)) {
+            if (word.includes(this.state.findStr)) {
                 newFilteredWords.push(word);
             }
         });
 
-        newWordArr = this.state.isSorted ? newFilteredWords.slice().sort() : newFilteredWords.slice();
+        newFilteredWords = this.state.isSorted ? newFilteredWords.sort() : newFilteredWords;
 
         this.setState({
-            words: newWordArr,
+            words: newFilteredWords,
+        });
+    },
+
+    sortWords: function () {
+        const newIsSorted = !this.state.isSorted;
+        this.setState({
+            isSorted: newIsSorted,
+        }, this.createNewWords);
+    },
+
+    filterWords: function (EO) {
+        let str = EO.target.value;
+        this.setState({
             findStr: str,
-        })
+        }, this.createNewWords);
     },
 
     clearFilter: function () {
@@ -64,7 +53,6 @@ const Filter = React.createClass({
 
 
     render: function () {
-
         const wordsCode = this.state.words.map((word, index) => {
             return React.DOM.div({key: index, className: 'word'}, word);
         });
