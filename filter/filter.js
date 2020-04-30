@@ -15,12 +15,18 @@ const Filter = React.createClass({
     },
 
     createNewWords: function () {
-        let newFilteredWords = [];
-        this.props.words.forEach(word => {
-            if (word.includes(this.state.findStr)) {
-                newFilteredWords.push(word);
-            }
-        });
+        let newFilteredWords;
+        const str = this.state.findStr.replace(/\s/g, '');
+        if (!str) {
+            newFilteredWords = this.props.words.slice();
+        } else {
+            newFilteredWords = [];
+            this.props.words.forEach(word => {
+                if (word.includes(str)) {
+                    newFilteredWords.push(word);
+                }
+            });
+        }
 
         newFilteredWords = this.state.isSorted ? newFilteredWords.sort() : newFilteredWords;
 
