@@ -9,7 +9,6 @@ const Filter = React.createClass({
     getInitialState: function () {
         return {
             words: this.props.words.slice(),
-            filteredWords: this.props.words.slice(),
             isSorted: false,
             findStr: '',
         };
@@ -17,7 +16,20 @@ const Filter = React.createClass({
 
     sortWords: function () {
         const newIsSorted = !this.state.isSorted;
-        const newWords = newIsSorted ? this.state.words.sort() : this.state.filteredWords.slice();
+        let newWords
+        switch (newIsSorted) {
+            case true:
+                newWords = this.state.words.sort();
+                break;
+            default:
+                newWords = [];
+                this.props.words.forEach(word => {
+                    if (word.includes(this.state.findStr)) {
+                        newWords.push(word);
+                    }
+                });
+
+        }
 
         this.setState({
             isSorted: newIsSorted,
@@ -38,7 +50,6 @@ const Filter = React.createClass({
 
         this.setState({
             words: newWordArr,
-            filteredWords: newFilteredWords.slice(),
             findStr: str,
         })
     },
@@ -46,7 +57,6 @@ const Filter = React.createClass({
     clearFilter: function () {
         this.setState({
             words: this.props.words.slice(),
-            filteredWords: this.props.words.slice(),
             isSorted: false,
             findStr: '',
         })
