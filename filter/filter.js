@@ -50,10 +50,9 @@ const Filter = React.createClass({
 
     clearFilter: function () {
         this.setState({
-            words: this.props.words.slice(),
             isSorted: false,
             findStr: '',
-        })
+        }, this.createNewWords)
     },
 
 
