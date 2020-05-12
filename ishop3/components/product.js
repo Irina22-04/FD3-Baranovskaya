@@ -14,14 +14,19 @@ class Product extends React.Component {
         cbMakeChosen: PropTypes.func,
         isSelected: PropTypes.bool,
         cbDeleteProduct: PropTypes.func,
+        cbMakeEdited: PropTypes.func,
     };
 
     makeChosen = () => {
-        this.props.cbMakeChosen(this.props.code);
+        this.props.cbMakeChosen(this.props.code, this.props.productName, this.props.price, this.props.photo, this.props.count);
     };
 
     deleteClick = () => {
         this.props.cbDeleteProduct(this.props.code, this.props.productName);
+    };
+
+    makeEdit = () => {
+        this.props.cbMakeEdited(this.props.code, this.props.productName, this.props.price, this.props.photo, this.props.count)
     };
 
     render() {
@@ -40,7 +45,7 @@ class Product extends React.Component {
                 </div>
 
                 <div className={'productImage'}
-                     style={{backgroundImage: `url(${this.props.photo})`}} >
+                     style={{backgroundImage: `url(${this.props.photo})`}}>
                 </div>
 
                 <div className={'count'}>
@@ -49,6 +54,13 @@ class Product extends React.Component {
 
                 <div className={'control'}>
                     <input
+                        className={'controlProduct'}
+                        type={'button'}
+                        value={'Edit'}
+                        onClick={this.makeEdit}
+                    />
+                    <input
+                        className={'controlProduct'}
                         type={'button'}
                         value={'Delete'}
                         onClick={this.deleteClick}

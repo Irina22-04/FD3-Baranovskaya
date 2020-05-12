@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import '../ishop.css';
 import Product from './product.js';
+import Card from './card.js';
+import EditCard from './editCard.js';
 
 class Shop extends React.Component {
 
@@ -27,11 +29,22 @@ class Shop extends React.Component {
     state = {
         goods: this.props.goods.slice(),
         isSelected: null,
+        showCard: null,
+        isEdited: null,
     };
 
-    makeChosen = numb => {
+    makeChosen = (code, productName, price, photo, count) => {
         this.setState({
-            isSelected: numb,
+            isSelected: code,
+            showCard: {code, productName, price, photo, count},
+        })
+    };
+
+    makeEdited = (code, productName, price, photo, count) => {
+        this.setState({
+            isEdited: true,
+            isSelected: code,
+            showCard: {code, productName, price, photo, count},
         })
     };
 
@@ -45,7 +58,8 @@ class Shop extends React.Component {
                     this.setState({
                         goods: this.state.goods.filter(product => {
                             return product.code !== numb;
-                        })
+                        }),
+                        showCard: null,
                     })
                 }
             }, 0)
@@ -66,12 +80,30 @@ class Shop extends React.Component {
                     cbMakeChosen={this.makeChosen}
                     isSelected={product.code === this.state.isSelected}
                     cbDeleteProduct={this.deleteProduct}
+                    cbMakeEdited={this.makeEdited}
                 >
                 </Product>
             )
         });
 
+        const divCard = (this.state.showCard&&!this.state.isEdited) ? <Card
+            code={this.state.showCard.code}
+            productName={this.state.showCard.productName}
+            price={this.state.showCard.price}
+            photo={this.state.showCard.photo}
+            count={this.state.showCard.count}
+        /> : null;
+
+        const divEditCard = this.state.isEdited ? <EditCard
+            code={this.state.showCard.code}
+            productName={this.state.showCard.productName}
+            price={this.state.showCard.price}
+            photo={this.state.showCard.photo}
+            count={this.state.showCard.count}
+        /> : null;
+
         return (
+            <div className={'iShop'}>
             <div className={'shop'}>
                 <div className={'productHeader'}>
                     <div className={'productName header'}>
@@ -91,7 +123,7 @@ class Shop extends React.Component {
                     </div>
 
                     <div className={'control header'}>
-                        this.props.headersTable.control
+                        {this.props.headersTable.control}
                     </div>
                 </div>
 
@@ -100,6 +132,11 @@ class Shop extends React.Component {
                 </div>
 
             </div>
+                {divCard}
+                {divEditCard}
+            </div>
+
+
         )
     }
 }

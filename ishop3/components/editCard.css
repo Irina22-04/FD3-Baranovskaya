@@ -1,0 +1,27 @@
+input {
+    width: 30%;
+}
+
+.card {
+    font-size: 20px;
+}
+
+.cardTitle {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card input {
+    position: absolute;
+    left: 10%;
+    font-size: 18px;
+}
+
+.controlEdit:last-child {
+    transform: translateY(100%);
+}
+
+.errDiv {
+    color: red;
+}
