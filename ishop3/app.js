@@ -6,7 +6,7 @@ import Shop from "./components/shop";
 
 import * as goodsArr from './goods.json';
 
-const headersTable = {name: 'товар', price: 'цена', photo: 'изображение', count: 'количество', control: 'редактирование'};
+const headersTable = {productName: 'товар', price: 'цена', photo: 'изображение', count: 'количество', control: 'редактирование'};
 
 ReactDOM.render(
     <Shop

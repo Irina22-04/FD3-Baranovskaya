@@ -10,7 +10,7 @@ class Shop extends React.Component {
 
     static propTypes = {
         headersTable: PropTypes.shape({
-            name: PropTypes.string.isRequired,
+            productName: PropTypes.string.isRequired,
             price: PropTypes.string.isRequired,
             photo: PropTypes.string.isRequired,
             count: PropTypes.string.isRequired,
@@ -18,7 +18,7 @@ class Shop extends React.Component {
         }),
         goods: PropTypes.arrayOf(
             PropTypes.shape({
-                name: PropTypes.string.isRequired,
+                productName: PropTypes.string.isRequired,
                 price: PropTypes.string.isRequired,
                 photo: PropTypes.string.isRequired,
                 count: PropTypes.number.isRequired,
@@ -30,21 +30,27 @@ class Shop extends React.Component {
         goods: this.props.goods.slice(),
         isSelected: null,
         showCard: null,
-        isEdited: null,
+        isEdited: false,
+        isMadeChangeProduct: false,
     };
 
-    makeChosen = (code, productName, price, photo, count) => {
+    makeChosen = (product, isEdited) => {
         this.setState({
-            isSelected: code,
-            showCard: {code, productName, price, photo, count},
+            isEdited: isEdited,
+            isSelected: product.code,
+            showCard: {...product},
         })
     };
 
-    makeEdited = (code, productName, price, photo, count) => {
+    madeChangeProduct = (val) => {
         this.setState({
-            isEdited: true,
-            isSelected: code,
-            showCard: {code, productName, price, photo, count},
+            isMadeChangeProduct: val,
+        })
+    };
+
+    cancelEdit = () => {
+        this.setState({
+            isEdited: false,
         })
     };
 
@@ -66,6 +72,21 @@ class Shop extends React.Component {
         )
     };
 
+    saveEdit = (newProduct) => {
+
+        const newGoodsList = this.state.goods.map(product => {
+            return product.code === newProduct.code ? newProduct : product;
+        });
+
+        this.setState({
+            goods: newGoodsList,
+            isEdited: false,
+            isSelected: newProduct.code,
+            showCard: {...newProduct},
+            isMadeChangeProduct: false,
+        })
+    };
+
     render() {
 
         const goodsTableCode = this.state.goods.map(product => {
@@ -73,7 +94,7 @@ class Shop extends React.Component {
                 <Product
                     key={product.code}
                     code={product.code}
-                    productName={product.name}
+                    productName={product.productName}
                     price={product.price}
                     photo={product.photo}
                     count={product.count}
@@ -81,12 +102,14 @@ class Shop extends React.Component {
                     isSelected={product.code === this.state.isSelected}
                     cbDeleteProduct={this.deleteProduct}
                     cbMakeEdited={this.makeEdited}
+                    isMadeChangeProduct={this.state.isMadeChangeProduct}
+                    isEdited={this.state.isEdited}
                 >
                 </Product>
             )
         });
 
-        const divCard = (this.state.showCard&&!this.state.isEdited) ? <Card
+        const divCard = (this.state.showCard && !this.state.isEdited) ? <Card
             code={this.state.showCard.code}
             productName={this.state.showCard.productName}
             price={this.state.showCard.price}
@@ -100,43 +123,44 @@ class Shop extends React.Component {
             price={this.state.showCard.price}
             photo={this.state.showCard.photo}
             count={this.state.showCard.count}
+            cbSaveEdit={this.saveEdit}
+            cbMadeChengeProduct={this.madeChangeProduct}
+            cbCancelEdit={this.cancelEdit}
         /> : null;
 
         return (
             <div className={'iShop'}>
-            <div className={'shop'}>
-                <div className={'productHeader'}>
-                    <div className={'productName header'}>
-                        {this.props.headersTable.name}
+                <div className={'shop'}>
+                    <div className={'productHeader'}>
+                        <div className={'productName header'}>
+                            {this.props.headersTable.name}
+                        </div>
+
+                        <div className={'price header'}>
+                            {this.props.headersTable.price}
+                        </div>
+
+                        <div className={'productImage header'}>
+                            {this.props.headersTable.photo}
+                        </div>
+
+                        <div className={'count header'}>
+                            {this.props.headersTable.count}
+                        </div>
+
+                        <div className={'control header'}>
+                            {this.props.headersTable.control}
+                        </div>
                     </div>
 
-                    <div className={'price header'}>
-                        {this.props.headersTable.price}
-                    </div>
-
-                    <div className={'productImage header'}>
-                        {this.props.headersTable.photo}
-                    </div>
-
-                    <div className={'count header'}>
-                        {this.props.headersTable.count}
-                    </div>
-
-                    <div className={'control header'}>
-                        {this.props.headersTable.control}
+                    <div className={'goods'}>
+                        {goodsTableCode}
                     </div>
                 </div>
-
-                <div className={'goods'}>
-                    {goodsTableCode}
-                </div>
-
-            </div>
+                <input className={'product-button'} type={'button'} value={'New product'} disabled={this.state.makeEdited}/>
                 {divCard}
                 {divEditCard}
             </div>
-
-
         )
     }
 }

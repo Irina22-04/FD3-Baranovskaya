@@ -4,6 +4,7 @@ input {
 
 .card {
     font-size: 20px;
+    margin-top: 50px;
 }
 
 .cardTitle {
@@ -18,10 +19,18 @@ input {
     font-size: 18px;
 }
 
+.controlEdit {
+    width: 70px;
+    transform: translateY(10px);
+}
+
 .controlEdit:last-child {
-    transform: translateY(100%);
+    transform: translate(80px, 10px);
 }
 
 .errDiv {
     color: red;
+    display: inline-block;
+    position: absolute;
+    left: 41%;
 }

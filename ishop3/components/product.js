@@ -15,18 +15,29 @@ class Product extends React.Component {
         isSelected: PropTypes.bool,
         cbDeleteProduct: PropTypes.func,
         cbMakeEdited: PropTypes.func,
+        isEdited: PropTypes.bool,
     };
 
-    makeChosen = () => {
-        this.props.cbMakeChosen(this.props.code, this.props.productName, this.props.price, this.props.photo, this.props.count);
+    makeChosen = (EO) => {
+
+        if (!this.props.isMadeChangeProduct) {
+            let isEdited = false;
+            if (EO.target.value === 'Edit') {
+                isEdited = true;
+            }
+            const choosenProduct = {
+                code: this.props.code,
+                productName: this.props.productName,
+                price: this.props.price,
+                photo: this.props.photo,
+                count: this.props.count,
+            };
+            this.props.cbMakeChosen(choosenProduct, isEdited);
+        }
     };
 
     deleteClick = () => {
         this.props.cbDeleteProduct(this.props.code, this.props.productName);
-    };
-
-    makeEdit = () => {
-        this.props.cbMakeEdited(this.props.code, this.props.productName, this.props.price, this.props.photo, this.props.count)
     };
 
     render() {
@@ -57,13 +68,15 @@ class Product extends React.Component {
                         className={'controlProduct'}
                         type={'button'}
                         value={'Edit'}
-                        onClick={this.makeEdit}
+                        //onClick={this.makeEdit}
+                        disabled={this.props.isMadeChangeProduct}
                     />
                     <input
                         className={'controlProduct'}
                         type={'button'}
                         value={'Delete'}
                         onClick={this.deleteClick}
+                        disabled={this.props.isEdited}
                     />
                 </div>
 
