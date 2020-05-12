@@ -7,10 +7,10 @@ class EditCard extends React.Component {
 
     static propTypes = {
         code: PropTypes.number.isRequired,
-        productName: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        photo: PropTypes.string.isRequired,
-        count: PropTypes.number.isRequired,
+        productName: PropTypes.string,
+        price: PropTypes.string,
+        photo: PropTypes.string,
+        count: PropTypes.number,
         cbSaveEdit: PropTypes.func.isRequired,
         cbMadeChengeProduct: PropTypes.func.isRequired,
         cbCancelEdit: PropTypes.func,
@@ -24,10 +24,10 @@ class EditCard extends React.Component {
         count: this.props.count,
 
         errText: {
-            productName: '',
-            price: '',
-            photo: '',
-            count: '',
+            productName: this.props.isCreateNewProduct ? 'Введите наименование' : '',
+            price: this.props.isCreateNewProduct ? 'Введите цену товара' : '',
+            photo: this.props.isCreateNewProduct ? 'Введите адрес ссылки на фото товара' : '',
+            count: this.props.isCreateNewProduct ? 'Укажите количество товара' : '',
         }
     };
 
@@ -50,7 +50,7 @@ class EditCard extends React.Component {
 
     editProduct = (EO) => {
         const field = EO.target.className.slice(5);
-        const value = EO.target.value.trim();
+        const value = field !== 'count' ? EO.target.value.trim() : Number(EO.target.value.trim());
         this.props.cbMadeChengeProduct(true);
         this.setState({
             [field]: value,
@@ -80,7 +80,10 @@ class EditCard extends React.Component {
             count: this.state.count,
         };
 
-        this.props.cbMadeChengeProduct(true);
+        this.props.cbMadeChengeProduct(false);
+        if (this.props.isCreateNewProduct) {
+            return this.props.cbSaveNewProduct(newProduct);
+        }
         this.props.cbSaveEdit(newProduct);
     };
 
@@ -93,17 +96,23 @@ class EditCard extends React.Component {
             price: this.props.price,
             photo: this.props.photo,
             count: this.props.count,
-        })
+        });
+        if (this.props.isCreateNewProduct) {
+            this.props.cbCancelSaveNewProduct()
+        }
     };
 
     render() {
+
         const canSave = !Object.values(this.state.errText).every(item => {
             return item === '';
         });
 
+        const phrase = this.props.isCreateNewProduct ? 'Внесение нового товара' : 'Внесение изменений в товар';
+
         return (
             <div className={'card'}>
-                <div className={'cardTitle'}>Внесение изменений в товар</div>
+                <div className={'cardTitle'}>{phrase}</div>
                 <div>ID:
                     <span>
                         {this.state.code}

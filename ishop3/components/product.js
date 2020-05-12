@@ -68,7 +68,6 @@ class Product extends React.Component {
                         className={'controlProduct'}
                         type={'button'}
                         value={'Edit'}
-                        //onClick={this.makeEdit}
                         disabled={this.props.isMadeChangeProduct}
                     />
                     <input

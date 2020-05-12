@@ -32,6 +32,7 @@ class Shop extends React.Component {
         showCard: null,
         isEdited: false,
         isMadeChangeProduct: false,
+        isCreateNewProduct: false,
     };
 
     makeChosen = (product, isEdited) => {
@@ -51,6 +52,14 @@ class Shop extends React.Component {
     cancelEdit = () => {
         this.setState({
             isEdited: false,
+        })
+    };
+
+    cancelSaveNewProduct = () => {
+        this.setState({
+            isSelected: null,
+            showCard: null,
+            isCreateNewProduct: false,
         })
     };
 
@@ -83,6 +92,35 @@ class Shop extends React.Component {
             isEdited: false,
             isSelected: newProduct.code,
             showCard: {...newProduct},
+            isMadeChangeProduct: false,
+        })
+    };
+
+    createNewProduct = () => {
+        const newCode = this.state.goods.length + 1;
+        const newProduct = {
+            code: newCode,
+            productName: '',
+            price: '',
+            photo: '',
+            count: 0,
+        };
+        this.setState({
+            isSelected: null,
+            showCard: {...newProduct},
+            isEdited: true,
+            isCreateNewProduct: true,
+        })
+    };
+
+    saveNewProduct = (newProduct) => {
+
+        this.setState({
+            goods: [...this.state.goods, newProduct],
+            isSelected: newProduct.code,
+            showCard: {...newProduct},
+            isEdited: false,
+            isCreateNewProduct: false,
             isMadeChangeProduct: false,
         })
     };
@@ -126,6 +164,9 @@ class Shop extends React.Component {
             cbSaveEdit={this.saveEdit}
             cbMadeChengeProduct={this.madeChangeProduct}
             cbCancelEdit={this.cancelEdit}
+            isCreateNewProduct={this.state.isCreateNewProduct}
+            cbSaveNewProduct={this.saveNewProduct}
+            cbCancelSaveNewProduct={this.cancelSaveNewProduct}
         /> : null;
 
         return (
@@ -157,7 +198,7 @@ class Shop extends React.Component {
                         {goodsTableCode}
                     </div>
                 </div>
-                <input className={'product-button'} type={'button'} value={'New product'} disabled={this.state.makeEdited}/>
+                <input className={'product-button'} type={'button'} value={'New product'} disabled={this.state.makeEdited} onClick={this.createNewProduct}/>
                 {divCard}
                 {divEditCard}
             </div>
