@@ -1,6 +1,6 @@
 [
-  {"productName": "телефон", "code": 1, "price": "500 рублей", "photo": "images/phone.jpg", "count": 13},
-  {"productName": "микроволновая печь", "code": 2, "price": "200 рублей", "photo": "images/microwave.jpg", "count": 34},
-  {"productName": "торшер", "code": 3, "price": "150 рублей", "photo": "images/floor-lamp.jpg", "count": 5},
-  {"productName": "чайник", "code": 4, "price": "250 рублей", "photo": "images/teapot.jpg", "count": 21}
+  {"productName": "телефон", "code": 1, "price": 500, "photo": "images/phone.jpg", "count": 13},
+  {"productName": "микроволновая печь", "code": 2, "price": 200, "photo": "images/microwave.jpg", "count": 34},
+  {"productName": "торшер", "code": 3, "price": 150, "photo": "images/floor-lamp.jpg", "count": 5},
+  {"productName": "чайник", "code": 4, "price": 250, "photo": "images/teapot.jpg", "count": 21}
 ]

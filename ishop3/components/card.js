@@ -8,7 +8,7 @@ class Card extends React.Component {
     static propTypes = {
         code: PropTypes.number.isRequired,
         productName: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
         photo: PropTypes.string.isRequired,
         count: PropTypes.number.isRequired,
     };
@@ -18,7 +18,7 @@ class Card extends React.Component {
             <div className={'card'}>
 
                 <div className={'cardTitle'}>{this.props.productName}</div>
-                <div>Цена: <span>{this.props.price}</span></div>
+                <div>Цена: <span>{`${this.props.price} рублей`}</span></div>
                 <div>Изображение: <span>{this.props.photo}</span></div>
                 <div>Количество: <span>{this.props.count}</span></div>
 

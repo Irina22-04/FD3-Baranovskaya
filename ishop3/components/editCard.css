@@ -15,7 +15,7 @@ input {
 
 .card input {
     position: absolute;
-    left: 10%;
+    left: 12%;
     font-size: 18px;
 }
 
@@ -32,5 +32,5 @@ input {
     color: red;
     display: inline-block;
     position: absolute;
-    left: 41%;
+    left: 43%;
 }

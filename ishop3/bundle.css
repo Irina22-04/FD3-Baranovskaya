@@ -68,7 +68,7 @@
     width: 20%;
 }
 
-input[type=button] {
+.controlProduct {
     height: 20%;
     min-height: 20px;
     position: relative;
@@ -81,21 +81,46 @@ input[type=button] {
     background-color: red;
 }
 
-.cardTitle {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
+.product-button {
+
 }
 
 .card span {
     font-weight: bold;
 }input {
-    width: 100px;
+    width: 30%;
+}
+
+.card {
+    font-size: 20px;
+    margin-top: 50px;
 }
 
 .cardTitle {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+.card input {
+    position: absolute;
+    left: 12%;
+    font-size: 18px;
+}
+
+.controlEdit {
+    width: 70px;
+    transform: translateY(10px);
+}
+
+.controlEdit:last-child {
+    transform: translate(80px, 10px);
+}
+
+.errDiv {
+    color: red;
+    display: inline-block;
+    position: absolute;
+    left: 43%;
 }
 /*# sourceMappingURL=bundle.css.map*/

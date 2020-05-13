@@ -8,12 +8,21 @@ class EditCard extends React.Component {
     static propTypes = {
         code: PropTypes.number.isRequired,
         productName: PropTypes.string,
-        price: PropTypes.string,
+        price: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+        ]),
         photo: PropTypes.string,
-        count: PropTypes.number,
+        count: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+        ]),
         cbSaveEdit: PropTypes.func.isRequired,
         cbMadeChengeProduct: PropTypes.func.isRequired,
         cbCancelEdit: PropTypes.func,
+        isCreateNewProduct: PropTypes.bool,
+        cbSaveNewProduct: PropTypes.func,
+        cbCancelSaveNewProduct: PropTypes.func,
     };
 
     state = {
@@ -31,44 +40,62 @@ class EditCard extends React.Component {
         }
     };
 
-    // UNSAFE_componentWillReceiveProps(nextProps){
-    //     this.setState({
-    //         code: nextProps.code,
-    //         productName: nextProps.productName,
-    //         price: nextProps.price,
-    //         photo: nextProps.photo,
-    //         count: nextProps.count,
-    //
-    //         errText: {
-    //             productName: '',
-    //             price: '',
-    //             photo: '',
-    //             count: '',
-    //         }
-    //     })
-    // }
-
-    editProduct = (EO) => {
-        const field = EO.target.className.slice(5);
-        const value = field !== 'count' ? EO.target.value.trim() : Number(EO.target.value.trim());
-        this.props.cbMadeChengeProduct(true);
-        this.setState({
-            [field]: value,
-        }, this.checkField(value, field))
-    };
-
-    checkField(value, field) {
-
-        if (!value) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (this.props.code !== nextProps.code) {
             this.setState({
-                errText: {...this.state.errText, [field]: 'Поле заполнено неверно'}
-            })
-        } else {
-            this.setState({
-                errText: {...this.state.errText, [field]: ''}
+                code: nextProps.code,
+                productName: nextProps.productName,
+                price: nextProps.price,
+                photo: nextProps.photo,
+                count: nextProps.count,
+
+                errText: {
+                    productName: '',
+                    price: '',
+                    photo: '',
+                    count: '',
+                }
             })
         }
     }
+
+    editProduct = (EO) => {
+        const field = EO.target.className.slice(5);
+        const value = EO.target.value.trim();
+
+        this.checkField(value, field);
+        this.props.cbMadeChengeProduct(true);
+    };
+
+    checkField(value, field) {
+        let isValidValue = true;
+        switch (field) {
+            case 'price':
+            case 'count':
+                isValidValue = this.checkNumberField(value);
+                value = isValidValue ? parseFloat(value) : value;
+                break;
+            case 'photo':
+                isValidValue = this.checkPhotoField(value);
+                break;
+        }
+
+        const message = value && isValidValue ? '' : 'Поле заполнено неверно';
+
+        this.setState({
+            [field]: value,
+            errText: {...this.state.errText, [field]: message}
+        })
+    }
+
+    checkPhotoField = (value) => {
+        const reg = /(.jpg|.png|jpeg)$/;
+        return reg.test(value);
+    };
+
+    checkNumberField = (value) => {
+        return !isNaN(parseFloat(value));
+    };
 
     saveEdit = () => {
 
@@ -107,13 +134,12 @@ class EditCard extends React.Component {
         const canSave = !Object.values(this.state.errText).every(item => {
             return item === '';
         });
-
         const phrase = this.props.isCreateNewProduct ? 'Внесение нового товара' : 'Внесение изменений в товар';
 
         return (
             <div className={'card'}>
                 <div className={'cardTitle'}>{phrase}</div>
-                <div>ID:
+                <div>ID:&nbsp;
                     <span>
                         {this.state.code}
                     </span>
@@ -127,7 +153,7 @@ class EditCard extends React.Component {
                 </div>
                 <div>
                     <label>Цена:
-                        <input className={'card-price'} type='text' value={this.state.price}
+                        <input className={'card-price'} type='text' value={`${this.state.price}`}
                                onChange={this.editProduct}/>
                     </label>
                     <div className={'errDiv'}>{this.state.errText.price}</div>

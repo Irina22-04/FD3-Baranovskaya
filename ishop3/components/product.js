@@ -8,13 +8,17 @@ class Product extends React.Component {
     static propTypes = {
         code: PropTypes.number.isRequired,
         productName: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
+        price: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string,
+        ]),
         photo: PropTypes.string.isRequired,
         count: PropTypes.number.isRequired,
         cbMakeChosen: PropTypes.func,
         isSelected: PropTypes.bool,
         cbDeleteProduct: PropTypes.func,
         cbMakeEdited: PropTypes.func,
+        isMadeChangeProduct: PropTypes.bool,
         isEdited: PropTypes.bool,
     };
 
@@ -52,7 +56,7 @@ class Product extends React.Component {
                 </div>
 
                 <div className={'price'}>
-                    {this.props.price}
+                    {this.props.price} рублей
                 </div>
 
                 <div className={'productImage'}

@@ -11,17 +11,23 @@ class Shop extends React.Component {
     static propTypes = {
         headersTable: PropTypes.shape({
             productName: PropTypes.string.isRequired,
-            price: PropTypes.string.isRequired,
+            price: PropTypes.string,
             photo: PropTypes.string.isRequired,
-            count: PropTypes.string.isRequired,
+            count: PropTypes.string,
             control: PropTypes.string.isRequired,
         }),
         goods: PropTypes.arrayOf(
             PropTypes.shape({
                 productName: PropTypes.string.isRequired,
-                price: PropTypes.string.isRequired,
+                price: PropTypes.oneOfType([
+                    PropTypes.number,
+                    PropTypes.string,
+                ]),
                 photo: PropTypes.string.isRequired,
-                count: PropTypes.number.isRequired,
+                count: PropTypes.oneOfType([
+                    PropTypes.number,
+                    PropTypes.string,
+                ]),
             })
         )
     };
@@ -103,7 +109,7 @@ class Shop extends React.Component {
             productName: '',
             price: '',
             photo: '',
-            count: 0,
+            count: '',
         };
         this.setState({
             isSelected: null,
@@ -198,7 +204,7 @@ class Shop extends React.Component {
                         {goodsTableCode}
                     </div>
                 </div>
-                <input className={'product-button'} type={'button'} value={'New product'} disabled={this.state.makeEdited} onClick={this.createNewProduct}/>
+                <input className={'product-button'} type={'button'} value={'New product'} disabled={this.state.isEdited} onClick={this.createNewProduct}/>
                 {divCard}
                 {divEditCard}
             </div>
