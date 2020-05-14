@@ -40,14 +40,14 @@ class EditCard extends React.Component {
         }
     };
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (this.props.code !== nextProps.code) {
+    componentDidUpdate(prevProps) {
+        if (this.props.code !== prevProps.code) {
             this.setState({
-                code: nextProps.code,
-                productName: nextProps.productName,
-                price: nextProps.price,
-                photo: nextProps.photo,
-                count: nextProps.count,
+                code: this.props.code,
+                productName: this.props.productName,
+                price: this.props.price,
+                photo: this.props.photo,
+                count: this.props.count,
 
                 errText: {
                     productName: '',
@@ -61,7 +61,7 @@ class EditCard extends React.Component {
 
     editProduct = (EO) => {
         const field = EO.target.className.slice(5);
-        const value = EO.target.value.trim();
+        const value = EO.target.value;
 
         this.checkField(value, field);
         this.props.cbMadeChengeProduct(true);
@@ -73,7 +73,7 @@ class EditCard extends React.Component {
             case 'price':
             case 'count':
                 isValidValue = this.checkNumberField(value);
-                value = isValidValue ? parseFloat(value) : value;
+                value = isValidValue ? Number(value) : value;
                 break;
             case 'photo':
                 isValidValue = this.checkPhotoField(value);
@@ -94,7 +94,7 @@ class EditCard extends React.Component {
     };
 
     checkNumberField = (value) => {
-        return !isNaN(parseFloat(value));
+        return !isNaN(Number(value));
     };
 
     saveEdit = () => {
