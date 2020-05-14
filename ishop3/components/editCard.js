@@ -5,6 +5,24 @@ import './editCard.css';
 
 class EditCard extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            code: this.props.code,
+            productName: this.props.productName,
+            price: this.props.price,
+            photo: this.props.photo,
+            count: this.props.count,
+
+            errText: {
+                productName: this.props.isCreateNewProduct ? 'Введите наименование' : '',
+                price: this.props.isCreateNewProduct ? 'Введите цену товара' : '',
+                photo: this.props.isCreateNewProduct ? 'Введите адрес ссылки на фото товара' : '',
+                count: this.props.isCreateNewProduct ? 'Укажите количество товара' : '',
+            }
+        }
+    }
+
     static propTypes = {
         code: PropTypes.number.isRequired,
         productName: PropTypes.string,
@@ -24,22 +42,7 @@ class EditCard extends React.Component {
         cbSaveNewProduct: PropTypes.func,
         cbCancelSaveNewProduct: PropTypes.func,
     };
-
-    state = {
-        code: this.props.code,
-        productName: this.props.productName,
-        price: this.props.price,
-        photo: this.props.photo,
-        count: this.props.count,
-
-        errText: {
-            productName: this.props.isCreateNewProduct ? 'Введите наименование' : '',
-            price: this.props.isCreateNewProduct ? 'Введите цену товара' : '',
-            photo: this.props.isCreateNewProduct ? 'Введите адрес ссылки на фото товара' : '',
-            count: this.props.isCreateNewProduct ? 'Укажите количество товара' : '',
-        }
-    };
-
+    
     componentDidUpdate(prevProps) {
         if (this.props.code !== prevProps.code) {
             this.setState({

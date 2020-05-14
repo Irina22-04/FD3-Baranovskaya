@@ -8,6 +8,18 @@ import EditCard from './editCard.js';
 
 class Shop extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            goods: this.props.goods.slice(),
+            isSelected: null,
+            showCard: null,
+            isEdited: false,
+            isMadeChangeProduct: false,
+            isCreateNewProduct: false,
+        }
+    }
+
     static propTypes = {
         headersTable: PropTypes.shape({
             productName: PropTypes.string.isRequired,
@@ -30,15 +42,6 @@ class Shop extends React.Component {
                 ]),
             })
         )
-    };
-
-    state = {
-        goods: this.props.goods.slice(),
-        isSelected: null,
-        showCard: null,
-        isEdited: false,
-        isMadeChangeProduct: false,
-        isCreateNewProduct: false,
     };
 
     makeChosen = (product, isEdited) => {
