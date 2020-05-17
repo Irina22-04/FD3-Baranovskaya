@@ -42,7 +42,7 @@ class EditCard extends React.Component {
         cbSaveNewProduct: PropTypes.func,
         cbCancelSaveNewProduct: PropTypes.func,
     };
-    
+
     componentDidUpdate(prevProps) {
         if (this.props.code !== prevProps.code) {
             this.setState({
