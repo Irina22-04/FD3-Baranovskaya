@@ -11,12 +11,16 @@ class Br2jsx extends React.Component {
     };
 
     render() {
-        let myText = this.props.text.replace(/<br\s?\/?>/g, ' <br/> ');
 
-        const arrayText = myText.split(' ');
+        const arrayText = this.props.text.split(/<br\s?\/?>/g,);
+        const dataLength = arrayText.length;
+        const result = [];
 
-        const result = arrayText.map((item, index) => {
-            return (item === '<br/>' ? <br key={index}/> : <React.Fragment key={index}>{item}</React.Fragment>);
+        arrayText.forEach((item, index) => {
+            result.push(item);
+            if (index !== dataLength - 1) {
+                result.push(<br/>)
+            }
         });
 
         return (
