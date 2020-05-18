@@ -19,7 +19,7 @@ class Br2jsx extends React.Component {
         arrayText.forEach((item, index) => {
             result.push(item);
             if (index !== dataLength - 1) {
-                result.push(<br/>)
+                result.push(<br key={index}/>)
             }
         });
 
