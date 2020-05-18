@@ -4,10 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RainbowFrame from "./components/rainbowFrame";
 
-import * as colors from './colors.json';
+import colors from './colors.json';
 
 ReactDOM.render(
-    <RainbowFrame colors={colors.default}>
+    <RainbowFrame colors={colors}>
         Hello!
     </RainbowFrame>
     , document.getElementById('container')
