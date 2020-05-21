@@ -1,0 +1,33 @@
+.errMessage {
+    display: inline-block;
+    width: max-content;
+    color: red;
+    left: 350px;
+    position: absolute;
+}
+
+.userInput {
+    height: 30px;
+}
+
+input {
+    position: absolute;
+    left: 180px;
+}
+
+input[data-main] {
+    left: 40px;
+}
+
+label {
+    font-size: 20px;
+}.card {
+    width: 20vw;
+    height: 28vw;
+    border: 2px solid black;
+    margin-top: 5%;
+    background-image: url(http://fe.it-academy.by/Examples/cards2.png);
+    background-size: 400% 1400%;
+    box-sizing: border-box;
+}
+/*# sourceMappingURL=bundle.css.map*/

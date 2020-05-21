@@ -1,0 +1,9 @@
+.card {
+    width: 20vw;
+    height: 28vw;
+    border: 2px solid black;
+    margin-top: 5%;
+    background-image: url(http://fe.it-academy.by/Examples/cards2.png);
+    background-size: 400% 1400%;
+    box-sizing: border-box;
+}
