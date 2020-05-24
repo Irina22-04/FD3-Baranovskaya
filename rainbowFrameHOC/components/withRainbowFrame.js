@@ -13,13 +13,8 @@ function withRainbowFrame(colors) {
             )
         });
 
-        return (
-            <React.Fragment>
-                {frame}
-            </React.Fragment>
-        );
+        return frame;
     }
-
 }
 
 export default withRainbowFrame;
