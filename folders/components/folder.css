@@ -1,0 +1,31 @@
+.folder-image {
+    width: 30px;
+    height: 20px;
+    background: url("../images/css_sprites.png") 6px 0 no-repeat;
+    background-size: 130% auto;
+    display: inline-block;
+}
+
+.folder {
+    font-size: 18px;
+    display: inline-block;
+    margin-left: 30px;
+    width: 100%;
+}
+
+.arrow {
+    width: 30px;
+    height: 18px;
+    background: url("../images/css_sprites.png") 16px -20px no-repeat;
+    display: inline-block;
+    background-size: 130% auto;
+    margin-left: -30px;
+}
+
+.open-arrow {
+        background-position: 16px -36px;
+}
+
+.folders-wrapper {
+    margin-left: 30px;
+}

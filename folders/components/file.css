@@ -1,0 +1,7 @@
+.file-image {
+    width: 20px;
+    height: 22px;
+    background: url("../images/css_sprites.png") -23px 4px no-repeat;
+    background-size: 200% auto;
+    display: inline-block;
+}
