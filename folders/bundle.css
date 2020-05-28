@@ -1,0 +1,40 @@
+.tree-container {
+    display: flex;
+}.folder-image {
+    width: 30px;
+    height: 20px;
+    background: url(ba1262fe5e0ff134207d6b6dac7a4c65.png) 6px 0 no-repeat;
+    background-size: 130% auto;
+    display: inline-block;
+}
+
+.folder {
+    font-size: 18px;
+    display: inline-block;
+    margin-left: 30px;
+    width: 100%;
+}
+
+.arrow {
+    width: 30px;
+    height: 18px;
+    background: url(ba1262fe5e0ff134207d6b6dac7a4c65.png) 16px -20px no-repeat;
+    display: inline-block;
+    background-size: 130% auto;
+    margin-left: -30px;
+}
+
+.open-arrow {
+        background-position: 16px -36px;
+}
+
+.folders-wrapper {
+    margin-left: 30px;
+}.file-image {
+    width: 20px;
+    height: 22px;
+    background: url(ba1262fe5e0ff134207d6b6dac7a4c65.png) -23px 4px no-repeat;
+    background-size: 200% auto;
+    display: inline-block;
+}
+/*# sourceMappingURL=bundle.css.map*/

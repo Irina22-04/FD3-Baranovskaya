@@ -23,14 +23,15 @@ export class Folder extends React.Component {
     }
 
     checkArrow = () => {
-        const {tree: {children}} = this.props;
-        return (children && children.length > 0) ? this.createArrow() : null;
+        const {tree: {children=[]}} = this.props;
+        const isChildren = children.some(child => child.type === 'FOLDER');
+        return isChildren ? this.createArrow() : null;
     };
 
     createArrow = () => {
         const {isSelected} = this.state;
         const arrowClass = isSelected ? 'arrow open-arrow' : 'arrow';
-        return <div className={arrowClass} onClick={this.switchSelect}/>
+        return <div className={arrowClass} />
     };
 
     switchSelect = () => {
@@ -62,7 +63,7 @@ export class Folder extends React.Component {
 
         return (
             <div className={"folder"}>
-                <div className={"name-wrapper"}>
+                <div className={"name-wrapper"} onClick={this.switchSelect}>
                     {this.checkArrow()}
                     <div className={"folder-image"}/>
                     {this.props.tree.name}
