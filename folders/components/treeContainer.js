@@ -1,5 +1,4 @@
 import React from 'react';
-import {EventEmitter} from 'events';
 
 import './treeContainer.css';
 import {Folder, myEvents} from './folder.js';

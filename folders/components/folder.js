@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {EventEmitter} from 'events';
 import './folder.css';
 
-export let myEvents=new EventEmitter();
+const myEvents=new EventEmitter();
 
-export class Folder extends React.Component {
+class Folder extends React.Component {
 
     static propTypes = {
         tree: PropTypes.shape({
@@ -75,3 +75,5 @@ export class Folder extends React.Component {
         );
     }
 }
+
+export {Folder, myEvents};
