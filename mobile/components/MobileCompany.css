@@ -1,0 +1,26 @@
+﻿.mobileCompany
+{
+  border: double gray 3px;
+  width: 90%;
+  padding: 3px 7px;
+  background-color: lightyellow;
+}
+
+.mobileCompanyName
+{
+  font-weight: bold;
+}
+
+.mobileCompanyClients
+{
+  padding-top: 5px;
+}
+
+.clientHeader {
+  display: flex;
+}
+
+.header {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
