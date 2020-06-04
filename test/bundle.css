@@ -1,0 +1,79 @@
+div.mobileClient
+{
+  padding: 2px 0;
+  display: flex;
+}
+
+.clientSurname,
+.clientName,
+.clientPatronym,
+.clientStatus,
+.clientDelete{
+  width: 13%;
+}
+
+.clientEdit {
+  width: 16%;
+}
+
+.clientBalance {
+  width: 10%;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+
+.mobileCompany
+{
+  border: double gray 3px;
+  width: 90%;
+  padding: 3px 7px;
+  background-color: lightyellow;
+}
+
+.mobileCompanyName
+{
+  font-weight: bold;
+}
+
+.mobileCompanyClients
+{
+  padding-top: 5px;
+}
+
+.clientHeader {
+  display: flex;
+}
+
+.header {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.edit-card {
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+.edit-card input {
+    position: absolute;
+    left: 12%;
+    font-size: 14px;
+    width: 30%;
+    padding-bottom: 0;
+}
+
+.edit-card .controlEdit {
+    width: 70px;
+    transform: translateY(10px);
+}
+
+.controlEdit:last-child {
+    transform: translate(80px, 10px);
+}
+/*# sourceMappingURL=bundle.css.map*/

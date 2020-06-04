@@ -1,0 +1,30 @@
+﻿.clientSurname,
+.clientName,
+.clientPatronym,
+.clientStatus,
+.clientDelete {
+    width: 13%;
+}
+
+.clientEdit {
+    width: 16%;
+}
+
+.clientBalance {
+    width: 10%;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.mobileClient {
+    padding: 2px 0;
+    display: flex;
+}
+
+

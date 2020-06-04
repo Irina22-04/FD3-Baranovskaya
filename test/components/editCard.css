@@ -1,0 +1,21 @@
+.edit-card {
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+.edit-card input {
+    position: absolute;
+    left: 12%;
+    font-size: 14px;
+    width: 30%;
+    padding-bottom: 0;
+}
+
+.edit-card .controlEdit {
+    width: 70px;
+    transform: translateY(10px);
+}
+
+.controlEdit:last-child {
+    transform: translate(80px, 10px);
+}
