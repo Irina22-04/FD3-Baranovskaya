@@ -1,8 +1,10 @@
 interface IStorageEngine {
 
-    addItem(item:Product):void;
-    getItem(index:number):Product;
-    getCount():number;
+    addItem(item: Product): void;
+
+    getItem(index: number): Product;
+
+    getCount(): number;
 
 }
 
@@ -13,15 +15,15 @@ class ScalesStorageEngineArray implements IStorageEngine {
         this.products = [];
     }
 
-    addItem(item:Product):void {
+    addItem(item: Product): void {
         this.products.push(item);
     }
 
-    getItem(index:number):Product {
+    getItem(index: number): Product {
         return this.products[index];
     }
 
-    getCount():number {
+    getCount(): number {
         return this.products.length;
     }
 }
@@ -33,25 +35,25 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine {
         this.productsKey = 'products';
     }
 
-    addItem(item:Product):void {
-        let products:Array<any> = JSON.parse(localStorage.getItem(this.productsKey));
-        if(products) {
+    addItem(item: Product): void {
+        let products: Array<any> = JSON.parse(localStorage.getItem(this.productsKey));
+        if (products) {
             products.push(item);
         } else {
-            products=[item];
+            products = [item];
         }
 
         localStorage.setItem(this.productsKey, JSON.stringify(products));
     }
 
-    getItem(index:number):Product {
-        const products:Array<any> = JSON.parse(localStorage.getItem(this.productsKey));
+    getItem(index: number): Product {
+        const products: Array<any> = JSON.parse(localStorage.getItem(this.productsKey));
         const product = products[index];
         return new Product(product.weight, product.name);
     }
 
-    getCount():number{
-        const products:Array<any> = JSON.parse(localStorage.getItem(this.productsKey));
+    getCount(): number {
+        const products: Array<any> = JSON.parse(localStorage.getItem(this.productsKey));
         return products.length;
     }
 }
@@ -77,7 +79,8 @@ class Product {
 
 class Scale<StorageEngine extends IStorageEngine> {
     storageEngine: IStorageEngine;
-    constructor(_storageEngine){
+
+    constructor(_storageEngine) {
         this.storageEngine = _storageEngine;
     }
 
@@ -85,27 +88,27 @@ class Scale<StorageEngine extends IStorageEngine> {
         this.storageEngine.addItem(product);
     }
 
-    getSumScale():number {
-        const productsCount = this.storageEngine.getCount();
-        let totalScale = 0;
-        for (let i=0; i<productsCount; i++) {
+    getSumScale(): number {
+        const productsCount: number = this.storageEngine.getCount();
+        let totalScale: number = 0;
+        for (let i = 0; i < productsCount; i++) {
             const product = this.storageEngine.getItem(i);
-            totalScale+= product.getScale();
+            totalScale += product.getScale();
         }
 
         return totalScale;
     }
 
-    getNameList():Array<string> {
+    getNameList(): Array<string> {
         const productsCount = this.storageEngine.getCount();
-        let allNames:Array<any> = [];
-        for (let i=0; i<productsCount; i++) {
+        let allNames: Array<any> = [];
+        for (let i: number = 0; i < productsCount; i++) {
             const product = this.storageEngine.getItem(i);
             allNames.push(product.getName());
         }
 
         return allNames;
-}
+    }
 }
 
 const myScale1 = new Scale(new ScalesStorageEngineArray());
