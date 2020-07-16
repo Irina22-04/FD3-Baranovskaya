@@ -1,0 +1,55 @@
+<div>
+  <form [formGroup]="spriteForm">
+    <div class="form-group">
+      <label>Url:</label>
+      <input class="form-control" name="spriteUrl" formControlName="spriteUrl" />
+
+      <div class="alert alert-danger"
+           *ngIf="spriteForm.controls['spriteUrl'].invalid && spriteForm.controls['spriteUrl'].touched">
+        Не указан url
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Влево:</label>
+      <input class="form-control" name="spriteOffsetX" formControlName="spriteOffsetX" />
+
+      <div class="alert alert-danger"
+           *ngIf="spriteForm.controls['spriteOffsetX'].invalid && spriteForm.controls['spriteOffsetX'].touched">
+        Не указано значение
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Вниз:</label>
+      <input class="form-control" name="spriteOffsetY" formControlName="spriteOffsetY" />
+
+      <div class="alert alert-danger"
+           *ngIf="spriteForm.controls['spriteOffsetY'].invalid && spriteForm.controls['spriteOffsetY'].touched">
+        Не указано значение
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Ширина:</label>
+      <input class="form-control" name="spriteWidth" formControlName="spriteWidth" />
+
+      <div class="alert alert-danger"
+           *ngIf="spriteForm.controls['spriteWidth'].invalid && spriteForm.controls['spriteWidth'].touched">
+        Не указано значение
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Высота:</label>
+      <input class="form-control" name="spriteHeight" formControlName="spriteHeight" />
+
+      <div class="alert alert-danger"
+           *ngIf="spriteForm.controls['spriteHeight'].invalid && spriteForm.controls['spriteHeight'].touched">
+        Не указано значение
+      </div>
+    </div>
+  </form>
+
+  <app-sprite [spriteOptions]="options" (handleSubmit)="onSubmit()"></app-sprite>
+</div>
