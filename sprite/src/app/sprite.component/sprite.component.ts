@@ -9,18 +9,18 @@ import {Options} from '../models/options.model';
 export class SpriteComponent {
   @Input() spriteOptions: Options;
 
-  @Output() handleSubmit = new EventEmitter<boolean>();
+  @Output() clicked = new EventEmitter<boolean>();
 
   onClick(): void {
-    this.handleSubmit.emit(true);
+    this.clicked.emit(true);
   }
 
   spriteStyle(): object {
     return {
       width: this.spriteOptions.spriteWidth + 'px',
       height: this.spriteOptions.spriteHeight + 'px',
-      top: this.spriteOptions.spriteOffsetY + 'px',
-      left: this.spriteOptions.spriteOffsetY + 'px',
+      backgroundPositionY: -this.spriteOptions.spriteOffsetY + 'px',
+      backgroundPositionX: -this.spriteOptions.spriteOffsetX + 'px',
       backgroundImage: `url(${this.spriteOptions.spriteUrl})`
     };
   }
