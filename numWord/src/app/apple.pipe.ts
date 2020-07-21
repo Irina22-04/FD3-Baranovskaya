@@ -24,6 +24,6 @@ export class ApplePipe implements PipeTransform {
     if (cnt === '' || isNaN(Number(cnt))) {
       return;
     }
-    return (`У вас ${cnt} ${this.getNumWord(cnt, words)}`);
+    return (`${cnt} ${this.getNumWord(cnt, words)}`);
   }
 }

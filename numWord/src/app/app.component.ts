@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  checkCount(cnt): string {
+    if (cnt === '' || isNaN(Number(cnt))) {
+      return;
+    }
+    return 'У вас';
+  }
 }

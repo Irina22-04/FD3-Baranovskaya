@@ -1,5 +1,5 @@
 <div>
   <input #appleNum (input)="false">
 
-  <span class='result'>{{appleNum.value|numword:'яблоко':'яблока':'яблок'}}</span>
+  <span class='result'>{{checkCount(appleNum.value)}} {{appleNum.value|numword:'яблоко':'яблока':'яблок'}}</span>
 </div>
