@@ -1,0 +1,9 @@
+<div>
+  Кинозал
+  <div>Всего мест: {{getAllSeats()}}</div>
+  <div>Свободно: {{getFreeSeats()}}</div>
+  <div>Занято: {{getOccupiedSeats()}}</div>
+  <div class='seat' [ngClass]="{isOccupied: getSeatClass(index)}" *ngFor="let seat of seatsArray; let index = index">{{index + 1}}</div>
+  <app-cash1></app-cash1>
+  <app-cash2></app-cash2>
+</div>

@@ -1,0 +1,15 @@
+<div class="cash">
+  <form [formGroup]="cash1Form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label>Касса:</label>
+      <input class="form-control" name="ticketNumber" formControlName="ticketNumber"/>
+
+      <div class="div-error"
+           *ngIf="cash1Form.controls['ticketNumber'].invalid&&cash1Form.controls['ticketNumber'].dirty">
+        Введите число от 1 до 25
+      </div>
+    </div>
+    <button type="submit" [disabled]="cash1Form.invalid">Купить</button>
+  </form>
+  {{returnBuyInfo()}}
+</div>

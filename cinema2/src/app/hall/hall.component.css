@@ -1,0 +1,13 @@
+.seat {
+  width: 25px;
+  height: 35px;
+  border: 2px solid black;
+  display: inline-block;
+  margin-right: 2px;
+  text-align: center;
+  line-height: 35px;
+}
+
+.isOccupied {
+  background-color: lightgray;
+}

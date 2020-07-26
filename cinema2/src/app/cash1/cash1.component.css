@@ -1,0 +1,14 @@
+.div-error {
+  color: red;
+}
+
+.cash {
+  margin-top: 10px;
+  border: 2px solid black;
+  width: max-content;
+  padding: 5px;
+}
+
+input {
+  margin: 3px;
+}
